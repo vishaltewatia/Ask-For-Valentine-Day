@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Do you love me?</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <style>
+      .center-screen {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      img {
+        width: 350px;
+      }
+      .buttones {
+        width: 100%;
+        text-align: center;
+      }
+      .btn {
+        display: inline-block;
+      }
+      h2 {
+        color: white;
+        font-size: 18px;
+
+        padding-top: 2px;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+      .mainn a {
+        text-decoration: none;
+        position: absolute;
+        right: 2%;
+        color: red;
+        bottom: 2%;
+      }
+      #nooo {
+        background: transparent;
+        color: red;
+        border: none;
+      }
+      .nooo {
+        color: red;
+        font-weight: 700;
+        font-size: 25px;
+      }
+      #nobut {
+        background: red;
+      }
+      #yesbut {
+        background: green;
+        padding: 10px;
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+      h1 {
+        text-shadow: 0 0 10px rgba(255, 254, 255, 0.68);
+        font-family: cursive;
+        font-weight: 800;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="app"
+      class="center-screen"
+      style="display: flex; flex-direction: column"
+    >
+      <h1>Will You Be My Valentine?</h1>
+      <img
+        src="https://i.postimg.cc/DZkw7g5n/output-onlinegiftools.gif"
+        alt=""
+      />
+      <button
+        type="button"
+        class="btn btn-danger"
+        @click="changeText('noButton')"
+        id="nooo"
+      >
+        <h2 class="nooo" @click="changeText('heading') ">
+          {{ currentHeaderText }}
+        </h2>
+      </button>
+      <div class="buttones">
+        <button
+          type="button"
+          class="btn btn-success mr-2"
+          :style="{ fontSize: yesButtonSize + 'rem' }"
+          :key="yesButtonSize"
+          @click="yesButton"
+          id="yesbut"
+        >
+          Yes
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-danger"
+          @click="changeText('noButton')"
+          id="nobut"
+        >
+          <h2>No</h2>
+        </button>
+      </div>
+    </div>
+    <p class="mainn">
+      <a href="https://www.instagram.com/untoldcoding/">Made by UntoldCoding</a>
+    </p>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          headerText: [
+            "",
+            "Are you Sure?",
+            "Really Sure?",
+            "Think Again..",
+            "Last Chance!",
+            "Surely not?",
+            "You Might Regret this?",
+            "Give it another thought!",
+            "This Could be a mistake!",
+            "Don't be so cold",
+            "Wouldn't you reconsider?",
+            "Is that your Final answer?",
+            "You're breaking my heart :(",
+          ],
+          confirmationMessages: [
+            "Are you sure?",
+            "Are you sure you don't like me?",
+            "Are you absolutely certain?",
+            // Add more confirmation messages as needed
+          ],
+          currentHeaderTextIndex: 0,
+          currentConfirmationIndex: 0,
+          yesButtonSize: 1,
+        },
+        methods: {
+          changeText(button) {
+            if (button === "noButton") {
+              this.currentHeaderTextIndex =
+                (this.currentHeaderTextIndex + 1) % this.headerText.length;
+              this.currentConfirmationIndex =
+                (this.currentConfirmationIndex + 1) %
+                this.confirmationMessages.length;
+              this.yesButtonSize += 5;
+            }
+          },
+          yesButton() {
+            window.location.href = "yes.html";
+          },
+        },
+        computed: {
+          currentHeaderText() {
+            return this.headerText[this.currentHeaderTextIndex];
+          },
+          currentConfirmationText() {
+            return this.confirmationMessages[this.currentConfirmationIndex];
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
